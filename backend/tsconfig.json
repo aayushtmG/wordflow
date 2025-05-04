@@ -1,0 +1,31 @@
+{
+  "compilerOptions": {
+    // Enable latest features
+    "lib": ["ESNext", "DOM"],
+    "target": "ES6",
+    "module": "ESNext",
+    "moduleDetection": "force",
+    "esModuleInterop": true,
+    "jsx": "react-jsx",
+    "allowJs": true,
+    "rootDir": "./src",
+    "outDir": "./dist",
+
+    // Bundler mode
+    "moduleResolution": "node",
+
+    // Best practices
+    "strict": true,
+    "skipLibCheck": true,
+    "noFallthroughCasesInSwitch": true,
+
+    // Some stricter flags (disabled by default)
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
+    "noPropertyAccessFromIndexSignature": false
+  },
+  "ts-node": {
+    "esm": true
+  }
+
+}
