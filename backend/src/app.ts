@@ -8,7 +8,7 @@ app.use(express.json({limit: '10mb'}))
 connectDatabase()
 
 
-app.use('/',router);
+app.use('/api',router);
 app.use(GlobalErrorHandler)
 
 export default app
