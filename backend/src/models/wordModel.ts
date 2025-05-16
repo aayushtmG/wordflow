@@ -12,8 +12,14 @@ export interface Word {
 const wordSchema = new Schema({
     term: String,
     definition: String,
-    recognizedCount: Number,
-    failedCount: Number,
+    recognizedCount: {
+    type: Number,
+        default: 0
+     },
+    failedCount: {
+        type: Number,
+        default: 0
+    },
     category: String,
     lastSeen: Date,
     creator: {

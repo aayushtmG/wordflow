@@ -1,11 +1,11 @@
 export interface User { 
-  id: string;
+  _id: string;
   username: string;
   email: string;
 }
 
 export interface Word {
-  id: string;
+  _id: string;
   term: string;
   definition: string;
   recognizedCount: number;

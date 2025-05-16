@@ -85,7 +85,7 @@ export const WordList: React.FC = () => {
       <AnimatePresence mode="wait">
         {currentWord && (
           <motion.div
-            key={currentWord.id}
+            key={currentWord._id}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}

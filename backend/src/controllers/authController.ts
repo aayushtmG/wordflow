@@ -65,7 +65,7 @@ export const signin = CatchAsync(async(req: Request,res: Response,next: NextFunc
   },process.env.JWT_SECRET_KEY as string,{expiresIn: '1h'})
 
   res.status(200).json({ message: "login success ",
-    userId: user._id.toString(),
+    user:{_id: user._id.toString(),email: user.email,username: user.username},
     token
   })
 });

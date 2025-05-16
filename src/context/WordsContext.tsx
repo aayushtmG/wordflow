@@ -48,10 +48,18 @@ export const WordsProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     }
   };
 
-  const updateWordStatus = (wordId: string, recognized: boolean) => {
+  const updateWordStatus =  (wordId: string, recognized: boolean) => {
     setState(prev => {
       const updatedWords = prev.words.map(word => {
-        if (word.id === wordId) {
+        if (word._id === wordId) {
+            fetch('http://localhost:3000/api/word/update/'+ word._id,{
+                    method: 'PATCH',
+                        headers: {
+                "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RAZ21haWwuY29tIiwidXNlcklkIjoiNjgxNzRhZTU4N2JjOWNkMjJhNjI5MWYwIiwiaWF0IjoxNzQ3MzY0NTM2LCJleHAiOjE3NDczNjgxMzZ9.xwVi3ehThiuFRoWiJAjqzU72zCzerJbSEcPIkDzgP-Q",
+                    "Content-Type": "application/json"
+                        },
+                        body: JSON.stringify(recognized ? { recognizedCount: word.recognizedCount + 1}: {failedCount: word.failedCount + 1})
+                    }).catch(err => console.log(err));
           return {
             ...word,
             recognizedCount: recognized ? word.recognizedCount + 1 : word.recognizedCount,

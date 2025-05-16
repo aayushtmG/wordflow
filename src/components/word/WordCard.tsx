@@ -16,7 +16,7 @@ export const WordCard: React.FC<WordCardProps> = ({ word, onSwipe }) => {
   // For swipe animation
   const x = useMotionValue(0);
   const rotate = useTransform(x, [-200, 200], [-30, 30]);
-  const opacity = useTransform(x, [-200, 0, 200], [0.5, 1, 0.5]);
+  // const opacity = useTransform(x, [-200, 0, 200], [0.5, 1, 0.5]);
   const background = useTransform(
     x, 
     [-200, -50, 50, 200], 
@@ -34,12 +34,12 @@ export const WordCard: React.FC<WordCardProps> = ({ word, onSwipe }) => {
     
     if (info.offset.x > threshold) {
       // Swiped right - recognized
-      onSwipe(word.id, true);
+      onSwipe(word._id, true);
             setIsFlipped(false);
     } else if (info.offset.x < -threshold) {
       // Swiped left - not recognized
             setIsFlipped(false);
-      onSwipe(word.id, false);
+      onSwipe(word._id, false);
     }
   };
   
