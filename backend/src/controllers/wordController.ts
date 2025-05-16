@@ -10,7 +10,9 @@ export const getAll = CatchAsync(async (req,res)=>{
 
 
 export const createWord = CatchAsync(async(req,res,next)=>{
-    const {term,definition} = req.body     
+    console.log(req.body);
+    const {term,definition} = req.body 
+
     if(!term || !definition){
         throw new ValidationError('Please provide all required fields',[],500)
     } 

@@ -24,14 +24,17 @@ export const WordsProvider: React.FC<{ children: React.ReactNode }> = ({ childre
       setState(prev => ({ ...prev, isLoading: true, error: null }));
       
      // In a real app, this would be an API call
-      const fetchedWords = await fetch('http://localhost:3000/api/word');
+      const response = await fetch('http://localhost:3000/api/word');
+    const data = await response.json();
+    const fetchedWords = data.words;
+        console.log(fetchedWords);
       
       // Get words from local storage or use mock data
-      const storedWords = localStorage.getItem('words');
-      const words = storedWords ? JSON.parse(storedWords) : fetchedWords;
+      // const storedWords = localStorage.getItem('words');
+      // const words = storedWords ? JSON.parse(storedWords) : fetchedWords;
       
       setState({
-        words,
+        words:fetchedWords,
         currentWordIndex: 0,
         isLoading: false,
         error: null,

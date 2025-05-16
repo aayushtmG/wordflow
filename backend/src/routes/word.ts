@@ -1,9 +1,9 @@
 import express from 'express'
-import {createWord, updateWord} from '../controllers/wordController'
+import {createWord, getAll, updateWord} from '../controllers/wordController'
 import isAuth from '../utils/isAuth'
 const router = express.Router()
 
-
+router.get('/',getAll);
 router.post('/create',isAuth,createWord)
 router.patch('/update/:wordId',updateWord)
 

@@ -19,19 +19,30 @@ export const AddWordModal: React.FC<AddWordModalProps> = ({ isOpen, onClose }) =
     e.preventDefault();
     
     if (!term || !definition) return;
-    
+    console.log('sending data: ',{term,definition}); 
     const newWord = {
-      id: crypto.randomUUID(),
       term,
       definition,
       category: category || 'Vocabulary',
       recognizedCount: 0,
       failedCount: 0,
     };
-    
+        console.log(newWord);
+        const response =  await fetch('http://localhost:3000/api/word/create',{
+        method: 'POST',
+        headers: {
+    "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RAZ21haWwuY29tIiwidXNlcklkIjoiNjgxNzRhZTU4N2JjOWNkMjJhNjI5MWYwIiwiaWF0IjoxNzQ3MzY0NTM2LCJleHAiOjE3NDczNjgxMzZ9.xwVi3ehThiuFRoWiJAjqzU72zCzerJbSEcPIkDzgP-Q",
+                "Content-Type": "application/json"
+            },
+        body: JSON.stringify(newWord)
+        }
+        )
+        const data = await response.json();
+    console.log(data); 
+
     // Add to localStorage
-    const updatedWords = [...words, newWord];
-    localStorage.setItem('words', JSON.stringify(updatedWords));
+    // const updatedWords = [...words, newWord];
+    // localStorage.setItem('words', JSON.stringify(updatedWords));
     
     // Refresh words list
     await loadWords();
@@ -97,7 +108,7 @@ export const AddWordModal: React.FC<AddWordModalProps> = ({ isOpen, onClose }) =
               Cancel
             </Button>
             <Button
-                            className='text-white'
+             className='text-white'
               type="submit"
               disabled={!term || !definition}
             >

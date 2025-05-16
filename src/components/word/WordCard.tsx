@@ -35,8 +35,10 @@ export const WordCard: React.FC<WordCardProps> = ({ word, onSwipe }) => {
     if (info.offset.x > threshold) {
       // Swiped right - recognized
       onSwipe(word.id, true);
+            setIsFlipped(false);
     } else if (info.offset.x < -threshold) {
       // Swiped left - not recognized
+            setIsFlipped(false);
       onSwipe(word.id, false);
     }
   };
@@ -101,10 +103,10 @@ export const WordCard: React.FC<WordCardProps> = ({ word, onSwipe }) => {
               <div className="space-y-2">
                 <div className="flex justify-between text-sm text-gray-600">
                   <span>
-                    <span className="text-green-600">{word.recognizedCount}</span> recognized
+                    <span className="text-red-600">{word.failedCount}</span> missed
                   </span>
                   <span>
-                    <span className="text-red-600">{word.failedCount}</span> missed
+                    <span className="text-green-600">{word.recognizedCount}</span> recognized
                   </span>
                 </div>
                 
@@ -117,25 +119,20 @@ export const WordCard: React.FC<WordCardProps> = ({ word, onSwipe }) => {
               </div>
             </>
           ) : (
-            <div className="absolute inset-0 p-6 transform rotate-y-180">
-              <div className="text-sm text-gray-500 flex justify-between">
+            <div className="absolute inset-0 p-6 -scale-x-[1] scale-y-[1] rotate-y-180 ">
+              <div className="text-sm text-gray-500 flex justify-between rotate-x-180">
                 <span>Definition</span>
                 <span>Tap to flip back</span>
               </div>
-              
-              <div className="flex-1 flex items-center justify-center">
+              <div className="flex-1 flex items-center justify-center h-full">
                 <p className="text-xl text-center text-gray-800">{word.definition}</p>
-              </div>
-              
-              <div className="text-sm text-gray-600 italic text-center">
-                Swipe right if you knew it, left if you didn't
               </div>
             </div>
           )}
         </motion.div>
       </motion.div>
       
-      <div className="absolute bottom-4 left-0 right-0 flex justify-center space-x-12 pointer-events-none">
+      <div className="absolute -bottom-14 -left-0 right-0 flex justify-center space-x-10 pointer-events-none">
         <div className="text-sm text-gray-500 flex items-center">
           <XIcon size={16} className="text-red-500 mr-1" />
           <span>Swipe left if you didn't recognize</span>

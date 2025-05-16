@@ -81,7 +81,7 @@ export const WordList: React.FC = () => {
   }
   
   return (
-    <div className="h-full flex flex-col p-4">
+        <div className="h-full  min-w-[300px] sm:min-w-[600px]  flex flex-col p-4 ">
       <AnimatePresence mode="wait">
         {currentWord && (
           <motion.div
@@ -89,7 +89,7 @@ export const WordList: React.FC = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.3 }}
+            transition={{ duration: 0.3 }}bg-blue-500
             className="flex-1 flex flex-col justify-center"
           >
             <WordCard word={currentWord} onSwipe={handleSwipe} />
