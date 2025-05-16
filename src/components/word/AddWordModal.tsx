@@ -97,6 +97,7 @@ export const AddWordModal: React.FC<AddWordModalProps> = ({ isOpen, onClose }) =
               Cancel
             </Button>
             <Button
+                            className='text-white'
               type="submit"
               disabled={!term || !definition}
             >

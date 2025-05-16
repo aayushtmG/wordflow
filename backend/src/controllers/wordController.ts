@@ -1,8 +1,6 @@
-import CatchAsync from '../utils/CatchAsync.js'
-import Word from '../models/wordModel.js'
-import validator from 'validator'
-import { ValidationError } from '../types/AppError.js';
-import { UserRequest } from '../types/app-request.js';
+import CatchAsync from '../utils/CatchAsync'
+import Word from '../models/wordModel'
+import { ValidationError } from '../types/AppError';
 
 
 export const getAll = CatchAsync(async (req,res)=>{
@@ -11,12 +9,12 @@ export const getAll = CatchAsync(async (req,res)=>{
 })
 
 
-export const createWord = CatchAsync(async(req: UserRequest,res,next)=>{
+export const createWord = CatchAsync(async(req,res,next)=>{
     const {term,definition} = req.body     
     if(!term || !definition){
         throw new ValidationError('Please provide all required fields',[],500)
     } 
-    if(!req.userId){
+    if(!req.userId ){
         throw new ValidationError('Not logged in',[],422)
     }
     const newWord = await Word.create({
@@ -27,20 +25,16 @@ export const createWord = CatchAsync(async(req: UserRequest,res,next)=>{
     res.status(200).json({message: 'success',newWord: {term: newWord.term, definition: newWord.definition}})
 })
 
-export const updateWord = CatchAsync(async(req:UserRequest,res,next)=>{
-    const {wordId,term,definition} = req.body
-    if(!term || !definition){
-        throw new ValidationError('Please provide all required fields',[],500)
-    } 
-
-    const updatedWord = await Word.findByIdAndUpdate(wordId,{
-    term, definition},{new:true});
-    
+export const updateWord = CatchAsync(async(req,res,next)=>{
+    const {wordId} = req.params
+    if(req.body.term == ''){
+        throw new Error('Term cannot be set empty')
+    }
+    const updatedWord = await Word.findByIdAndUpdate(wordId,{...req.body},{new:true});
     res.status(200).json({message: 'success',word: updatedWord})
-
 })
 
-export const deleteWord = CatchAsync(async(req: UserRequest,res,next)=>{
+export const deleteWord = CatchAsync(async(req,res,next)=>{
     const {id} = req.params
     const word = await Word.findById(id);
     if(!word){
@@ -53,5 +47,4 @@ export const deleteWord = CatchAsync(async(req: UserRequest,res,next)=>{
      res.status(200).json({
         message: 'Word deleted successfully',
       })   
-
 })

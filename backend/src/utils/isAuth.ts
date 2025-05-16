@@ -1,11 +1,11 @@
 import { NextFunction, Request, Response } from "express";
-import { ValidationError } from "../types/AppError.js";
+import { ValidationError } from "../types/AppError";
 import jwt, { JwtPayload } from 'jsonwebtoken'
-import { UserRequest } from "../types/app-request.js";
 
 
-const isAuth = (req: UserRequest, res: Response, next: NextFunction) => {
+const isAuth = (req:Request, res: Response, next: NextFunction) => {
   const authHeader = req.get('Authorization');
+
   if(!authHeader){
     throw new ValidationError('Not Authenticated',[],401);
   } 

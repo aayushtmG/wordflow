@@ -1,14 +1,11 @@
 import express from "express"
-import userRoutes from './user.js'
-import authRoutes from './auth.js'
-import wordRoutes from './word.js'
-import isAuth from "../utils/isAuth.js"
+import authRoutes from './auth'
+import wordRoutes from './word'
 
 
 const router = express.Router()
 
 router.use('/auth',authRoutes)
-
 router.use("/word",wordRoutes)
 
 

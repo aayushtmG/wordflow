@@ -1,11 +1,11 @@
 import express from 'express'
-import {createWord, updateWord} from '../controllers/wordController.js'
-import isAuth from '../utils/isAuth.js'
+import {createWord, updateWord} from '../controllers/wordController'
+import isAuth from '../utils/isAuth'
 const router = express.Router()
 
 
-router.use('/create',isAuth,createWord)
-router.use('/update',updateWord)
+router.post('/create',isAuth,createWord)
+router.patch('/update/:wordId',updateWord)
 
 
 export default router

@@ -28,7 +28,6 @@ export const Dashboard: React.FC = () => {
   const notSeenWords = words.filter(word => word.recognizedCount === 0 && word.failedCount === 0).length;
   
   const masteredPercentage = totalWords > 0 ? Math.round((masteredWords / totalWords) * 100) : 0;
-  
   // Get top categories
   const categories = words.reduce((acc, word) => {
     if (word.category) {
@@ -55,7 +54,7 @@ export const Dashboard: React.FC = () => {
             
             <Button
               onClick={() => setIsAddWordModalOpen(true)}
-              className="flex items-center"
+              className="flex text-white items-center"
             >
               <PlusIcon size={18} className="mr-1" />
               Add New Word
@@ -115,15 +114,15 @@ export const Dashboard: React.FC = () => {
               <h3 className="text-lg font-medium text-gray-800 mb-4">Learning Progress</h3>
               <div className="h-60 flex items-center justify-center">
                 <div className="w-full h-full flex items-end justify-around">
-                  <div className="flex flex-col items-center">
-                    <div className="w-16 bg-green-100 rounded-t-lg" style={{ height: `${masteredPercentage}%` }}>
-                      <div className="bg-green-500 h-full w-full rounded-t-lg transition-all duration-1000"></div>
+                  <div className="flex flex-col items-center justify-end h-full">
+                    <div className="w-16 bg-green-100 rounded-t-lg" style={{height: `${masteredPercentage}%` }}>
+                      <div className="bg-green-500 h-full w-full rounded-t-lg transition-all duration-1000 "></div>
                     </div>
                     <p className="text-sm text-gray-600 mt-2">Mastered</p>
                     <p className="text-xs text-gray-500">{masteredWords} words</p>
                   </div>
                   
-                  <div className="flex flex-col items-center">
+                  <div className="flex flex-col items-center justify-end h-full">
                     <div className="w-16 bg-yellow-100 rounded-t-lg" style={{ height: `${(needsPracticeWords / totalWords) * 100}%` }}>
                       <div className="bg-yellow-500 h-full w-full rounded-t-lg transition-all duration-1000"></div>
                     </div>
@@ -131,7 +130,7 @@ export const Dashboard: React.FC = () => {
                     <p className="text-xs text-gray-500">{needsPracticeWords} words</p>
                   </div>
                   
-                  <div className="flex flex-col items-center">
+                  <div className="flex flex-col items-center justify-end h-full ">
                     <div className="w-16 bg-blue-100 rounded-t-lg" style={{ height: `${(notSeenWords / totalWords) * 100}%` }}>
                       <div className="bg-blue-500 h-full w-full rounded-t-lg transition-all duration-1000"></div>
                     </div>
@@ -172,7 +171,7 @@ export const Dashboard: React.FC = () => {
               </div>
               <div className="mt-4 md:mt-0">
                 <Link to="/practice">
-                  <Button variant="outline" className="bg-white text-indigo-600 hover:bg-indigo-50 border-white">
+                  <Button variant="outline" className="bg-white text-indigo-600 flex items-center hover:bg-indigo-50 border-white">
                     Start Practice <ArrowRightIcon size={16} className="ml-2" />
                   </Button>
                 </Link>

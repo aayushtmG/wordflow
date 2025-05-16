@@ -1,10 +1,10 @@
 import express from "express";
-import { signin, signup } from "../controllers/authController.js";
+import { updateUser } from "../controllers/userController";
+import isAuth from "../utils/isAuth";
+
 
 const router = express.Router()
 
-router.post('/signup',signup);
-router.post('/signin',signin);
-
+router.use('/update',isAuth,updateUser)
 
 export default router

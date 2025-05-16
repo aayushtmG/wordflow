@@ -135,7 +135,7 @@ export const WordCard: React.FC<WordCardProps> = ({ word, onSwipe }) => {
         </motion.div>
       </motion.div>
       
-      <div className="absolute bottom-4 left-0 right-0 flex justify-center space-x-3 pointer-events-none">
+      <div className="absolute bottom-4 left-0 right-0 flex justify-center space-x-12 pointer-events-none">
         <div className="text-sm text-gray-500 flex items-center">
           <XIcon size={16} className="text-red-500 mr-1" />
           <span>Swipe left if you didn't recognize</span>

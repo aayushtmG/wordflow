@@ -1,5 +1,6 @@
-import app from './app.js'
-import { PORT } from './config.js';
+import app from './app'
+import { PORT } from './config';
+
 
 app.listen(PORT,()=>{
   console.log('listening to ',PORT)

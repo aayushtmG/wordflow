@@ -24,7 +24,7 @@ export const Landing: React.FC = () => {
                 </Button>
               </Link>
               <Link to="/signup">
-                <Button className="bg-white text-indigo-600 hover:bg-indigo-50">
+                <Button className="text-indigo-600 bg-white hover:bg-indigo-50">
                   Sign up
                 </Button>
               </Link>
@@ -43,7 +43,7 @@ export const Landing: React.FC = () => {
               </p>
               <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
                 <Link to="/signup">
-                  <Button size="lg" className="bg-white text-indigo-600 hover:bg-indigo-50 w-full sm:w-auto">
+                  <Button size="lg" className="bg-white text-indigo-600 hover:bg-indigo-50 hover:text-white w-full sm:w-auto">
                     Get started for free
                   </Button>
                 </Link>
@@ -147,7 +147,7 @@ export const Landing: React.FC = () => {
             Join thousands of learners who have significantly improved their language skills with WordFlow.
           </p>
           <Link to="/signup">
-            <Button size="lg" className="bg-indigo-600 hover:bg-indigo-700">
+            <Button size="lg" className="bg-indigo-600 text-white flex mx-auto items-center  hover:bg-indigo-700">
               Get started for free <ArrowRightIcon size={18} className="ml-2" />
             </Button>
           </Link>

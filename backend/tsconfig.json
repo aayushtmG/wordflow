@@ -3,7 +3,7 @@
     // Enable latest features
     "lib": ["ESNext", "DOM"],
     "target": "ES6",
-    "module": "ESNext",
+    "module": "commonjs",
     "moduleDetection": "force",
     "esModuleInterop": true,
     "jsx": "react-jsx",
@@ -13,19 +13,15 @@
 
     // Bundler mode
     "moduleResolution": "node",
-
     // Best practices
     "strict": true,
     "skipLibCheck": true,
     "noFallthroughCasesInSwitch": true,
-
     // Some stricter flags (disabled by default)
     "noUnusedLocals": false,
     "noUnusedParameters": false,
-    "noPropertyAccessFromIndexSignature": false
+    "noPropertyAccessFromIndexSignature": false,
+"typeRoots": ["./src/types"],
   },
-  "ts-node": {
-    "esm": true
-  }
-
+        "include": ["/src"]
 }

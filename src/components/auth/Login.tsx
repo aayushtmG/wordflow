@@ -102,6 +102,7 @@ export const Login: React.FC = () => {
               </div>
               
               <Button
+                                className='text-white'
                 type="submit"
                 fullWidth
                 isLoading={isLoading}

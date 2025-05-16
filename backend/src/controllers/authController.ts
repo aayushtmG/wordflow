@@ -1,14 +1,16 @@
 import { NextFunction, Request, Response } from "express"
-import { User } from "../models/userModel.js"
+import User from "../models/userModel"
 import validator from 'validator'
-import CatchAsync from "../utils/CatchAsync.js";
-import { ValidationError } from "../types/AppError.js";
+import CatchAsync from "../utils/CatchAsync";
+import { ValidationError } from "../types/AppError";
 import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
 
+type ErrorHolder = {message: string}[];
+
 export const signup = CatchAsync(async(req: Request,res: Response,next: NextFunction)=>{
-  const errors = []
-  const {username,email,password} = req.body
+  const errors: ErrorHolder = [];
+  const {username,email,password,confirmPassword} = req.body
   if(!email || !validator.isEmail(email)){
     errors.push({message: "Please provide valid email"})
   }
@@ -17,6 +19,9 @@ export const signup = CatchAsync(async(req: Request,res: Response,next: NextFunc
   }
   if(!password || !validator.isLength(password,{min: 5})){
     errors.push({message: "Password should not be empty and minimum of 5 characters long "})
+  }
+  if(password != confirmPassword){
+    errors.push({message: "Password should be confirmed"})
   }
 
   if(errors.length > 0){
