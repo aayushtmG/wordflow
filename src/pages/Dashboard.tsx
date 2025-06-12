@@ -22,7 +22,7 @@ export const Dashboard: React.FC = () => {
   }
   
   // Calculate statistics
-  const totalWords = words.length;
+  const totalWords = words?.length;
   const masteredWords = words.filter(word => word.recognizedCount > word.failedCount && (word.recognizedCount + word.failedCount) > 0).length;
   const needsPracticeWords = words.filter(word => word.failedCount >= word.recognizedCount && (word.recognizedCount + word.failedCount) > 0).length;
   const notSeenWords = words.filter(word => word.recognizedCount === 0 && word.failedCount === 0).length;

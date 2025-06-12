@@ -16,6 +16,7 @@ export interface Word {
 
 export interface AuthState {
   user: User | null;
+token?: string;
   isAuthenticated: boolean;
   isLoading: boolean;
   error: string | null;

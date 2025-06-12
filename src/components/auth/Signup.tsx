@@ -30,10 +30,11 @@ export const Signup: React.FC = () => {
     }
     
     try {
-      await signup(username, email, password);
+      await signup(username, email, password,confirmPassword);
       navigate('/dashboard');
     } catch (err) {
       // Error will be handled by context
+            throw new Error(err as string);
     }
   };
   
@@ -112,6 +113,7 @@ export const Signup: React.FC = () => {
               </div>
               
               <Button
+                className='text-white'
                 type="submit"
                 fullWidth
                 isLoading={isLoading}

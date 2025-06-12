@@ -3,6 +3,7 @@ import { PlusIcon, XIcon } from 'lucide-react';
 import { Button } from '../ui/Button';
 import { Input } from '../ui/Input';
 import { useWords } from '../../context/WordsContext';
+import { useAuth } from '../../context/AuthContext';
 
 interface AddWordModalProps {
   isOpen: boolean;
@@ -14,10 +15,10 @@ export const AddWordModal: React.FC<AddWordModalProps> = ({ isOpen, onClose }) =
   const [definition, setDefinition] = useState('');
   const [category, setCategory] = useState('');
   const { words, loadWords } = useWords();
+    const {token} = useAuth();
   
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
     if (!term || !definition) return;
     console.log('sending data: ',{term,definition}); 
     const newWord = {
@@ -28,17 +29,17 @@ export const AddWordModal: React.FC<AddWordModalProps> = ({ isOpen, onClose }) =
       failedCount: 0,
     };
         console.log(newWord);
-        const response =  await fetch('http://localhost:3000/api/word/create',{
+        const response =  await fetch(import.meta.env.VITE_BACKEND_API + '/api/word/create',{
         method: 'POST',
         headers: {
-    "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RAZ21haWwuY29tIiwidXNlcklkIjoiNjgxNzRhZTU4N2JjOWNkMjJhNjI5MWYwIiwiaWF0IjoxNzQ3MzY0NTM2LCJleHAiOjE3NDczNjgxMzZ9.xwVi3ehThiuFRoWiJAjqzU72zCzerJbSEcPIkDzgP-Q",
-                "Content-Type": "application/json"
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${token}`
             },
         body: JSON.stringify(newWord)
         }
         )
         const data = await response.json();
-    console.log(data); 
+        console.log(data); 
 
     // Add to localStorage
     // const updatedWords = [...words, newWord];

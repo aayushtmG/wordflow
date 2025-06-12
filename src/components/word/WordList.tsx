@@ -72,7 +72,7 @@ export const WordList: React.FC = () => {
         <p className="text-lg text-gray-600 mb-8">
           You've gone through all the words in this session.
         </p>
-        <Button onClick={handleReset} className="flex items-center">
+        <Button onClick={handleReset} className="flex items-center text-white">
           <RefreshCwIcon size={18} className="mr-2" />
           Start Over
         </Button>

@@ -41,6 +41,7 @@ export const signup = CatchAsync(async(req: Request,res: Response,next: NextFunc
 });
 
 export const signin = CatchAsync(async(req: Request,res: Response,next: NextFunction)=>{
+    console.log('reuesst recieved');
   const errors = []
   const {email,password} = req.body
   if(!validator.isEmail(email)){

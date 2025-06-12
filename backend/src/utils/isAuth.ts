@@ -5,6 +5,7 @@ import jwt, { JwtPayload } from 'jsonwebtoken'
 
 const isAuth = (req:Request, res: Response, next: NextFunction) => {
   const authHeader = req.get('Authorization');
+    console.log(authHeader);
 
   if(!authHeader){
     throw new ValidationError('Not Authenticated',[],401);

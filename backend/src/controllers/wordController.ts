@@ -3,10 +3,15 @@ import Word from '../models/wordModel'
 import { ValidationError } from '../types/AppError';
 
 
-export const getAll = CatchAsync(async (req,res)=>{
+export const getAllWords = CatchAsync(async (req,res)=>{
     const words = await Word.find();
     res.status(200).json({message: 'success',words})
 })
+export const getWords = CatchAsync(async (req,res)=>{
+    const words = await Word.find({creator : req.userId});
+    res.status(200).json({message: 'success',words})
+})
+
 
 
 export const createWord = CatchAsync(async(req,res,next)=>{
